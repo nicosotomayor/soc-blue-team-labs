@@ -1,1 +1,158 @@
 # Blue Team Labs
+# Malware Analysis - Ransomware Script
+
+## Descripción
+
+Análisis de un script de ransomware en entorno Linux utilizando técnicas de análisis estático.
+
+El objetivo fue identificar comportamiento malicioso, infraestructura de comando y control (C2), mecanismos de cifrado y técnicas anti-forenses sin ejecutar el archivo.
+
+## Plataforma
+
+BlueTeamLabs Online
+
+Challenge:
+https://blueteamlabs.online/home/challenge/malware-analysis-ransomware-script-4263fe6ecf
+
+---
+
+## Metodología
+
+El análisis se realizó sobre un archivo comprimido con múltiples capas de ofuscación.
+
+### 1. Descompresión del malware
+
+```bash
+unzip 2840b376b949e09d909fbaca64351eebbde15ced.zip
+unzip "Recovered Script File.zip"
+```
+
+Se obtuvo el archivo final:
+
+```bash
+Recovered Script File.txt
+```
+
+---
+
+### 2. Análisis estático
+
+Se utilizó inspección directa del código mediante:
+
+```bash
+cat "Recovered Script File.txt"
+```
+
+y búsquedas específicas:
+
+```bash
+grep 185
+grep encrypt
+grep http
+grep yum
+grep motd
+```
+
+---
+
+## Hallazgos
+
+### Dirección IP maliciosa
+
+185.141.25.168
+
+---
+
+### Comunicación con servidor C2
+
+http://185.141.25.168/check_attack/0.txt
+
+El script consulta instrucciones remotas mediante `wget`.
+
+---
+
+### Eliminación de logs (anti-forense)
+
+```bash
+rm -rf /var/log/yum*
+```
+
+El malware elimina registros para ocultar actividad.
+
+---
+
+### Mensaje de ransomware
+
+El script modifica `/etc/motd` utilizando un heredoc (`<<EOF`), mostrando un mensaje al iniciar sesión:
+
+YOU WERE HACKED
+
+---
+
+### Correo del atacante
+
+nationalsiense@protonmail.com
+
+---
+
+### Extensión de archivos cifrados
+
+.☢
+
+---
+
+### Funciones de cifrado
+
+El script ejecuta las siguientes funciones en orden:
+
+encrypt_ssh  
+encrypt_grep_files  
+encrypt_home  
+encrypt_root  
+encrypt_db  
+
+---
+
+## Análisis técnico
+
+El malware presenta:
+
+- Comunicación con infraestructura C2
+- Uso de herramientas del sistema (`wget`, `curl`, `openssl`)
+- Ejecución automatizada mediante funciones
+- Eliminación de evidencia (logs)
+- Modificación del sistema para notificación del ataque
+
+---
+
+## Indicadores de Compromiso (IoCs)
+
+IP:
+185.141.25.168
+
+URL:
+http://185.141.25.168/check_attack/0.txt
+
+Email:
+nationalsiense@protonmail.com
+
+Extensión:
+.☢
+
+---
+
+## Conclusión
+
+El script corresponde a un ransomware funcional con capacidades de cifrado, comunicación remota y evasión básica de análisis.
+
+El uso de múltiples funciones de cifrado y eliminación de logs demuestra un enfoque estructurado para maximizar impacto y dificultar la respuesta.
+
+---
+
+## Evidencia
+
+Las capturas utilizadas en el análisis se encuentran en la carpeta:
+
+```text
+evidence/
+```
