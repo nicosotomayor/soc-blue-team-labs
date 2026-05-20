@@ -32,8 +32,12 @@ soc-blue-team-labs/
 ├── tryhackme/
 ├── letsdefend/
 └── templates/
+```
 
-Autor
+---
 
-Nicolás Sotomayor
-SOC Analyst Junior | Blue Team
+## Autor
+
+**Nicolás Sotomayor**  
+SOC Analyst (Junior) | Blue Team  
+[LinkedIn](https://www.linkedin.com/in/nikosotomayor-cyber)
