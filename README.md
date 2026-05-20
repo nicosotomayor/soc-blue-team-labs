@@ -39,5 +39,5 @@ soc-blue-team-labs/
 ## Autor
 
 **Nicolás Sotomayor**  
-SOC Analyst (Junior) | Blue Team  
+SOC Analyst (Junior) | Técnico Superior en Ciberseguridad | Blue Team 
 [LinkedIn](https://www.linkedin.com/in/nikosotomayor-cyber)
